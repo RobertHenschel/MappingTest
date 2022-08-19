@@ -1,0 +1,11 @@
+output rml
+
+map RHMap from database {
+    subject template "http:/example.org/rhmap/{0}" with relationsName;
+
+    types schema.table
+
+
+    
+}
+

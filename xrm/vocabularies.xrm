@@ -1,0 +1,10 @@
+vocabulary schema {
+    prefix "schema" "https://schema.org"
+
+    classes
+        table
+        column
+
+    properties
+        name
+}

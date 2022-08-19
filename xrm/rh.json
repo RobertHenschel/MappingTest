@@ -1,0 +1,643 @@
+{
+  "relations" : [ {
+    "uniqueConstraints" : [ {
+      "name" : "pk_suppliers",
+      "determinants" : [ "\"supplier_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"supplier_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"company_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(40)"
+    }, {
+      "name" : "\"contact_name\"",
+      "isNullable" : true,
+      "datatype" : "varchar(30)"
+    }, {
+      "name" : "\"contact_title\"",
+      "isNullable" : true,
+      "datatype" : "varchar(30)"
+    }, {
+      "name" : "\"address\"",
+      "isNullable" : true,
+      "datatype" : "varchar(60)"
+    }, {
+      "name" : "\"city\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"region\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"postal_code\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"country\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"phone\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    }, {
+      "name" : "\"fax\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    }, {
+      "name" : "\"homepage\"",
+      "isNullable" : true,
+      "datatype" : "text(2147483647)"
+    } ],
+    "name" : [ "\"suppliers\"" ],
+    "otherNames" : [ [ "\"public\"", "\"suppliers\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_shippers",
+      "determinants" : [ "\"shipper_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"shipper_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"company_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(40)"
+    }, {
+      "name" : "\"phone\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    } ],
+    "name" : [ "\"shippers\"" ],
+    "otherNames" : [ [ "\"public\"", "\"shippers\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_order_details",
+      "determinants" : [ "\"order_id\"", "\"product_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_order_details_orders",
+      "from" : {
+        "relation" : [ "\"order_details\"" ],
+        "columns" : [ "\"order_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"orders\"" ],
+        "columns" : [ "\"order_id\"" ]
+      }
+    }, {
+      "name" : "fk_order_details_products",
+      "from" : {
+        "relation" : [ "\"order_details\"" ],
+        "columns" : [ "\"product_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"products\"" ],
+        "columns" : [ "\"product_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"order_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"product_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"unit_price\"",
+      "isNullable" : false,
+      "datatype" : "float4"
+    }, {
+      "name" : "\"quantity\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"discount\"",
+      "isNullable" : false,
+      "datatype" : "float4"
+    } ],
+    "name" : [ "\"order_details\"" ],
+    "otherNames" : [ [ "\"public\"", "\"order_details\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_products",
+      "determinants" : [ "\"product_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_products_categories",
+      "from" : {
+        "relation" : [ "\"products\"" ],
+        "columns" : [ "\"category_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"categories\"" ],
+        "columns" : [ "\"category_id\"" ]
+      }
+    }, {
+      "name" : "fk_products_suppliers",
+      "from" : {
+        "relation" : [ "\"products\"" ],
+        "columns" : [ "\"supplier_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"suppliers\"" ],
+        "columns" : [ "\"supplier_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"product_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"product_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(40)"
+    }, {
+      "name" : "\"supplier_id\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"category_id\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"quantity_per_unit\"",
+      "isNullable" : true,
+      "datatype" : "varchar(20)"
+    }, {
+      "name" : "\"unit_price\"",
+      "isNullable" : true,
+      "datatype" : "float4"
+    }, {
+      "name" : "\"units_in_stock\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"units_on_order\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"reorder_level\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"discontinued\"",
+      "isNullable" : false,
+      "datatype" : "int4"
+    } ],
+    "name" : [ "\"products\"" ],
+    "otherNames" : [ [ "\"public\"", "\"products\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_categories",
+      "determinants" : [ "\"category_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"category_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"category_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"description\"",
+      "isNullable" : true,
+      "datatype" : "text(2147483647)"
+    }, {
+      "name" : "\"picture\"",
+      "isNullable" : true,
+      "datatype" : "bytea"
+    } ],
+    "name" : [ "\"categories\"" ],
+    "otherNames" : [ [ "\"public\"", "\"categories\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_customers",
+      "determinants" : [ "\"customer_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"customer_id\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    }, {
+      "name" : "\"company_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(40)"
+    }, {
+      "name" : "\"contact_name\"",
+      "isNullable" : true,
+      "datatype" : "varchar(30)"
+    }, {
+      "name" : "\"contact_title\"",
+      "isNullable" : true,
+      "datatype" : "varchar(30)"
+    }, {
+      "name" : "\"address\"",
+      "isNullable" : true,
+      "datatype" : "varchar(60)"
+    }, {
+      "name" : "\"city\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"region\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"postal_code\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"country\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"phone\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    }, {
+      "name" : "\"fax\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    } ],
+    "name" : [ "\"customers\"" ],
+    "otherNames" : [ [ "\"public\"", "\"customers\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_customer_customer_demo",
+      "determinants" : [ "\"customer_id\"", "\"customer_type_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_customer_customer_demo_customer_demographics",
+      "from" : {
+        "relation" : [ "\"customer_customer_demo\"" ],
+        "columns" : [ "\"customer_type_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"customer_demographics\"" ],
+        "columns" : [ "\"customer_type_id\"" ]
+      }
+    }, {
+      "name" : "fk_customer_customer_demo_customers",
+      "from" : {
+        "relation" : [ "\"customer_customer_demo\"" ],
+        "columns" : [ "\"customer_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"customers\"" ],
+        "columns" : [ "\"customer_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"customer_id\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    }, {
+      "name" : "\"customer_type_id\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    } ],
+    "name" : [ "\"customer_customer_demo\"" ],
+    "otherNames" : [ [ "\"public\"", "\"customer_customer_demo\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_customer_demographics",
+      "determinants" : [ "\"customer_type_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"customer_type_id\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    }, {
+      "name" : "\"customer_desc\"",
+      "isNullable" : true,
+      "datatype" : "text(2147483647)"
+    } ],
+    "name" : [ "\"customer_demographics\"" ],
+    "otherNames" : [ [ "\"public\"", "\"customer_demographics\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_employee_territories",
+      "determinants" : [ "\"employee_id\"", "\"territory_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_employee_territories_employees",
+      "from" : {
+        "relation" : [ "\"employee_territories\"" ],
+        "columns" : [ "\"employee_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"employees\"" ],
+        "columns" : [ "\"employee_id\"" ]
+      }
+    }, {
+      "name" : "fk_employee_territories_territories",
+      "from" : {
+        "relation" : [ "\"employee_territories\"" ],
+        "columns" : [ "\"territory_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"territories\"" ],
+        "columns" : [ "\"territory_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"employee_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"territory_id\"",
+      "isNullable" : false,
+      "datatype" : "varchar(20)"
+    } ],
+    "name" : [ "\"employee_territories\"" ],
+    "otherNames" : [ [ "\"public\"", "\"employee_territories\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_usstates",
+      "determinants" : [ "\"state_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"state_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"state_name\"",
+      "isNullable" : true,
+      "datatype" : "varchar(100)"
+    }, {
+      "name" : "\"state_abbr\"",
+      "isNullable" : true,
+      "datatype" : "varchar(2)"
+    }, {
+      "name" : "\"state_region\"",
+      "isNullable" : true,
+      "datatype" : "varchar(50)"
+    } ],
+    "name" : [ "\"us_states\"" ],
+    "otherNames" : [ [ "\"public\"", "\"us_states\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_territories",
+      "determinants" : [ "\"territory_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_territories_region",
+      "from" : {
+        "relation" : [ "\"territories\"" ],
+        "columns" : [ "\"region_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"region\"" ],
+        "columns" : [ "\"region_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"territory_id\"",
+      "isNullable" : false,
+      "datatype" : "varchar(20)"
+    }, {
+      "name" : "\"territory_description\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    }, {
+      "name" : "\"region_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    } ],
+    "name" : [ "\"territories\"" ],
+    "otherNames" : [ [ "\"public\"", "\"territories\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_orders",
+      "determinants" : [ "\"order_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_orders_customers",
+      "from" : {
+        "relation" : [ "\"orders\"" ],
+        "columns" : [ "\"customer_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"customers\"" ],
+        "columns" : [ "\"customer_id\"" ]
+      }
+    }, {
+      "name" : "fk_orders_employees",
+      "from" : {
+        "relation" : [ "\"orders\"" ],
+        "columns" : [ "\"employee_id\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"employees\"" ],
+        "columns" : [ "\"employee_id\"" ]
+      }
+    }, {
+      "name" : "fk_orders_shippers",
+      "from" : {
+        "relation" : [ "\"orders\"" ],
+        "columns" : [ "\"ship_via\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"shippers\"" ],
+        "columns" : [ "\"shipper_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"order_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"customer_id\"",
+      "isNullable" : true,
+      "datatype" : "bpchar(2147483647)"
+    }, {
+      "name" : "\"employee_id\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"order_date\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"required_date\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"shipped_date\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"ship_via\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"freight\"",
+      "isNullable" : true,
+      "datatype" : "float4"
+    }, {
+      "name" : "\"ship_name\"",
+      "isNullable" : true,
+      "datatype" : "varchar(40)"
+    }, {
+      "name" : "\"ship_address\"",
+      "isNullable" : true,
+      "datatype" : "varchar(60)"
+    }, {
+      "name" : "\"ship_city\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"ship_region\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"ship_postal_code\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"ship_country\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    } ],
+    "name" : [ "\"orders\"" ],
+    "otherNames" : [ [ "\"public\"", "\"orders\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_employees",
+      "determinants" : [ "\"employee_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "foreignKeys" : [ {
+      "name" : "fk_employees_employees",
+      "from" : {
+        "relation" : [ "\"employees\"" ],
+        "columns" : [ "\"reports_to\"" ]
+      },
+      "to" : {
+        "relation" : [ "\"employees\"" ],
+        "columns" : [ "\"employee_id\"" ]
+      }
+    } ],
+    "columns" : [ {
+      "name" : "\"employee_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"last_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(20)"
+    }, {
+      "name" : "\"first_name\"",
+      "isNullable" : false,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"title\"",
+      "isNullable" : true,
+      "datatype" : "varchar(30)"
+    }, {
+      "name" : "\"title_of_courtesy\"",
+      "isNullable" : true,
+      "datatype" : "varchar(25)"
+    }, {
+      "name" : "\"birth_date\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"hire_date\"",
+      "isNullable" : true,
+      "datatype" : "date"
+    }, {
+      "name" : "\"address\"",
+      "isNullable" : true,
+      "datatype" : "varchar(60)"
+    }, {
+      "name" : "\"city\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"region\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"postal_code\"",
+      "isNullable" : true,
+      "datatype" : "varchar(10)"
+    }, {
+      "name" : "\"country\"",
+      "isNullable" : true,
+      "datatype" : "varchar(15)"
+    }, {
+      "name" : "\"home_phone\"",
+      "isNullable" : true,
+      "datatype" : "varchar(24)"
+    }, {
+      "name" : "\"extension\"",
+      "isNullable" : true,
+      "datatype" : "varchar(4)"
+    }, {
+      "name" : "\"photo\"",
+      "isNullable" : true,
+      "datatype" : "bytea"
+    }, {
+      "name" : "\"notes\"",
+      "isNullable" : true,
+      "datatype" : "text(2147483647)"
+    }, {
+      "name" : "\"reports_to\"",
+      "isNullable" : true,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"photo_path\"",
+      "isNullable" : true,
+      "datatype" : "varchar(255)"
+    } ],
+    "name" : [ "\"employees\"" ],
+    "otherNames" : [ [ "\"public\"", "\"employees\"" ] ]
+  }, {
+    "uniqueConstraints" : [ {
+      "name" : "pk_region",
+      "determinants" : [ "\"region_id\"" ],
+      "isPrimaryKey" : true
+    } ],
+    "columns" : [ {
+      "name" : "\"region_id\"",
+      "isNullable" : false,
+      "datatype" : "int2"
+    }, {
+      "name" : "\"region_description\"",
+      "isNullable" : false,
+      "datatype" : "bpchar(2147483647)"
+    } ],
+    "name" : [ "\"region\"" ],
+    "otherNames" : [ [ "\"public\"", "\"region\"" ] ]
+  } ],
+  "metadata" : {
+    "dbmsProductName" : "PostgreSQL",
+    "dbmsVersion" : "13.7 (Debian 13.7-1.pgdg110+1)",
+    "driverName" : "PostgreSQL JDBC Driver",
+    "driverVersion" : "42.2.23",
+    "quotationString" : "\"",
+    "extractionTime" : "2022-08-07T15:34:22",
+    "idFactoryType" : "POSTGRESQL"
+  }
+}

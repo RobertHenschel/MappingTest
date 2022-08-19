@@ -1,0 +1,9 @@
+
+logical-source database {
+    type csv
+    source "rh.json"
+
+    referenceables
+     relationsName "relations.name"
+
+}
