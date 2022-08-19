@@ -7,7 +7,8 @@
 4) Execute `run.sh`
 
 Expeced error message:
-`
+
+```
 ./run.sh
 io.carml.engine.RmlMapperException: Could not resolve source for logical source: blank node resource _:c9fc2573062744ce8f64e8de6f5e105d1 in:
 
@@ -18,4 +19,5 @@ io.carml.engine.RmlMapperException: Could not resolve source for logical source:
   rml:referenceFormulation ql:JSONPath .
 
     at io.carml.engine.RmlMapper.lambda$resolveSource$3(RmlMapper.java:133)
-`
+    ...
+```
