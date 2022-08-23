@@ -1,4 +1,5 @@
-output carml
+// mapping to RDF from an XML file
+output rml
 
 map character from characters {
 	subject template "http://example.org/character/{0}" with id;
@@ -12,17 +13,22 @@ map character from characters {
 		dbo.hairColor from hair;
 }
 
+// XML: properties & XPath 
 logical-source characters {
-	type csv
-	source "rh.csv"
+	type xml
+	// note that source has to be before iterator, it won't be valid vice versa
+	source "characters.xml"
+	iterator "/characters/character"
 
+	// in XML you often have XPath expressions, the need to be put in quotes and prefixed with an alias
 	referenceables
-		id
+		id "@id"
 		firstname
 		lastname
 		hair
 }
 
+// vocabulary: classes and properties
 vocabulary schema {
 	prefix "schema" "http://schema.org/"
 
